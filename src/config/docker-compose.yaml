@@ -1,0 +1,22 @@
+version: "3.6"
+
+services:
+  # ============================= web-be =============================
+  web-be:
+    restart: unless-stopped
+    image: phamhyta/cnweb:demo
+    ports:
+      - "8100:8010"
+    env_file:
+      - .env
+
+  # ============================= mongodb =============================
+  mongodb:
+      image: mongo:5.0
+      ports:
+        - 27021:27017
+      # volumes:
+        # - mongo-db:/data/db
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=admin-password 
